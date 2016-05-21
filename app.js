@@ -37,30 +37,36 @@
                 name: "cranberry juice",
                 description: "healthy and delicious with sparkling water"
             }];
-            $scope.bigObject = {};
-            $scope.bigObject.selectedItems = [];
-            $scope.checked;
-            $scope.testing = function(t, listItem) {
-                t.checked ? $scope.bigObject.selectedItems.push(listItem) : $scope.removeItem(listItem);
-            };
-            $scope.removeItem = function(listItem) {
-                $scope.bigObject.selectedItems = $scope.bigObject.selectedItems.filter(function(item) {
-                    for (var prop in item) {
-                        if (item[prop] !== listItem[prop]) {
-                            return true;
-                        }
-                    }
-                    return false;
-                });
-            }
+            $scope.selectedItems = [];
         }])
         .directive('dropdown', function() {
+            function link(scope, element, attrs, controller, transcludeFn) { 
+                scope.$watch()
+                scope.checked;
+                scope.testing = function(t, listItem) {
+                    t.checked ? scope.multiselected.push(listItem) : scope.removeItem(listItem);
+                };
+                scope.removeItem = function(listItem) {
+                    scope.multiselected = scope.multiselected.filter(function(item) {
+                        for (var prop in item) {
+                            if (item[prop] !== listItem[prop]) {
+                                return true;
+                            }
+                        }
+                        return false;
+                    });
+                }
+            }
+
             return {
                 scope: {
-                    list: '='
+                    list: '=',
+                    multiselected: '='
                 },
-                templateUrl: "dropdown.html"
+                templateUrl: "dropdown.html",
+                link: link
             }
         });
+
 
 })();
