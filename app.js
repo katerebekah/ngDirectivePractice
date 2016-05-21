@@ -57,7 +57,7 @@
         .directive('dropdown', function() {
             return {
                 scope: {
-                    list: '=list'
+                    list: '='
                 },
                 templateUrl: "dropdown.html"
             }
