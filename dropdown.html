@@ -1,0 +1,20 @@
+<div class="form-group dropdown">
+    <label class="control-label"><span class="requiredLabelIndicator">*</span><small>Drinks:</small></label>
+    <button type="button" class="btn dropdown-toggle btnPlainDropDown form-control" data-toggle="dropdown" aria-expanded="false">
+        <span class="inlineBlock pull-left">Select Contract(s)</span>
+        <span class="inlineBlock pull-right"><span class="caret"></span></span>
+    </button>
+    <ul class="dropdown-menu checkboxList width100" role="menu">
+        <li class="marginTop10 marginLeft10 marginBottom10 marginRight10 noHover" style="overflow:hidden">
+            <input placeholder="Filter Categories" class="form-control input-sm" style="width:100%;" />
+        </li>
+        <li ng-repeat="listItem in listOfItems" class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="checked" ng-change="testing(this, listItem)" />
+                <span>{{listItem.name}}</span>
+                <br />
+                <span class="marginLeft20">{{listItem.description}}</span>
+            </label>
+        </li>
+    </ul>
+</div>
