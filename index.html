@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+
+<body>
+    <div ng-app="DirectiveApp" class="container">
+        <div ng-controller="kate">
+            <h1>{{welcome}}</h1>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group dropdown">
+                        <label class="control-label"><span class="requiredLabelIndicator">*</span><small>Drinks:</small></label>
+                        <button type="button" class="btn dropdown-toggle btnPlainDropDown form-control" data-toggle="dropdown" aria-expanded="false">
+                            <span class="inlineBlock pull-left">Select Contract(s)</span>
+                            <span class="inlineBlock pull-right"><span class="caret"></span></span>
+                        </button>
+                        <ul class="dropdown-menu checkboxList width100" role="menu">
+                            <li class="marginTop10 marginLeft10 marginBottom10 marginRight10 noHover" style="overflow:hidden">
+                                <input placeholder="Filter Categories" class="form-control input-sm" style="width:100%;" />
+                            </li>
+                            <li ng-repeat="listItem in listOfItems" class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="checked" ng-change="testing(this, listItem)" />
+                                    <span>{{listItem.name}}</span>
+                                    <br />
+                                    <span class="marginLeft20">{{listItem.description}}</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.5.5/angular-animate.min.js"></script>
+        <script src="https://code.angularjs.org/1.5.5/angular-touch.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.2/ui-bootstrap.min.js"></script>
+        <script>
+        (function() {
+
+            angular.module("DirectiveApp", [])
+                .controller('kate', ['$scope', function($scope) {
+                    $scope.welcome = "YOLO";
+                    $scope.listOfItems = [{
+                        name: "Red Bull",
+                        description: "delicious beverage"
+                    }, {
+                        name: "water",
+                        description: "refreshing beverage"
+                    }, {
+                        name: "coffee",
+                        description: "hot beverage of caffeine"
+                    }, {
+                        name: "milk",
+                        description: "calcium filled cereal holder"
+                    }, {
+                        name: "sweet tea",
+                        description: "Cold, sugared tea"
+                    }, {
+                        name: "breakfast tea",
+                        description: "hot team served with milk and sugar"
+                    }, {
+                        name: "Monster",
+                        description: "The white one is the best monster"
+                    }, {
+                        name: "cinnamon tea",
+                        description: "hot tea with cinnamon and cloves"
+                    }, {
+                        name: "diet dr pepper",
+                        description: "better than diet pepsi"
+                    }, {
+                        name: "pineapple cider",
+                        description: "most delicious alcoholic cider"
+                    }, {
+                        name: "cranberry juice",
+                        description: "healthy and delicious with sparkling water"
+                    }];
+                    $scope.bigObject = {};
+                    $scope.bigObject.selectedItems = [];
+                    $scope.checked;
+                    $scope.testing = function(t, listItem) {
+                        t.checked ? $scope.bigObject.selectedItems.push(listItem) : $scope.removeItem(listItem);
+                    };
+                    $scope.removeItem = function(listItem) {
+                        $scope.bigObject.selectedItems = $scope.bigObject.selectedItems.filter(function(item) {
+                        	for (var prop in item){
+                        		if (item[prop] !== listItem[prop]){
+                        			return true;
+                        		}
+                        	}
+                        	return false;
+                        });
+                    }
+                }])
+                .directive('dropDown', function() {
+
+                });
+
+        })();
+        </script>
+</body>
+
+</html>
