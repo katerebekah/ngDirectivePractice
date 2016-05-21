@@ -45,17 +45,22 @@
             };
             $scope.removeItem = function(listItem) {
                 $scope.bigObject.selectedItems = $scope.bigObject.selectedItems.filter(function(item) {
-                	for (var prop in item){
-                		if (item[prop] !== listItem[prop]){
-                			return true;
-                		}
-                	}
-                	return false;
+                    for (var prop in item) {
+                        if (item[prop] !== listItem[prop]) {
+                            return true;
+                        }
+                    }
+                    return false;
                 });
             }
         }])
-        .directive('dropDown', function() {
-
+        .directive('dropdown', function() {
+            return {
+                scope: {
+                    list: '=list'
+                },
+                templateUrl: "dropdown.html"
+            }
         });
 
 })();

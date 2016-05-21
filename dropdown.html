@@ -8,7 +8,7 @@
         <li class="marginTop10 marginLeft10 marginBottom10 marginRight10 noHover" style="overflow:hidden">
             <input placeholder="Filter Categories" class="form-control input-sm" style="width:100%;" />
         </li>
-        <li ng-repeat="listItem in listOfItems" class="checkbox">
+        <li ng-repeat="listItem in list" class="checkbox">
             <label>
                 <input type="checkbox" ng-model="checked" ng-change="testing(this, listItem)" />
                 <span>{{listItem.name}}</span>
