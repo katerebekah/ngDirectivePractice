@@ -37,11 +37,11 @@
                 name: "cranberry juice",
                 description: "healthy and delicious with sparkling water"
             }];
-            $scope.selectedItems = [];
+            $scope.bigObject = {};
+            $scope.bigObject.selectedItems = [];
         }])
         .directive('dropdown', function() {
             function link(scope, element, attrs, controller, transcludeFn) { 
-                scope.$watch()
                 scope.checked;
                 scope.testing = function(t, listItem) {
                     t.checked ? scope.multiselected.push(listItem) : scope.removeItem(listItem);
